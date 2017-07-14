@@ -156,7 +156,7 @@ module.exports = function ({ Plugin }) {
         ['PUT', 'POST', 'DELETE'],
         `/${kibanaIndex}/{paths*}`,
         {
-          pre: [ noDirectIndex, noBulkCheck ]
+          // pre: [ noDirectIndex, noBulkCheck ]
         }
       );
 

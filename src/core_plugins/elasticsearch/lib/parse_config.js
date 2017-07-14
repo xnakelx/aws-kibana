@@ -22,7 +22,8 @@ export function parseConfig(serverConfig = {}) {
     path: uri.pathname,
     query: uri.query,
     headers: serverConfig.customHeaders
-  };
+  };//
+  //config.connectionClass = require('http-aws-es');
 
   // Auth
   if (serverConfig.auth !== false && serverConfig.username && serverConfig.password) {

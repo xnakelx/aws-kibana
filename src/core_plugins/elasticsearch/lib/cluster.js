@@ -2,7 +2,6 @@ import elasticsearch from 'elasticsearch';
 import { get, set, isEmpty, cloneDeep, pick } from 'lodash';
 import toPath from 'lodash/internal/toPath';
 import Boom from 'boom';
-
 import filterHeaders from './filter_headers';
 import { parseConfig } from './parse_config';
 
@@ -13,6 +12,7 @@ export class Cluster {
 
     this._client = this.createClient();
     this._noAuthClient = this.createClient({ auth: false });
+
 
     return this;
   }
@@ -54,7 +54,12 @@ export class Cluster {
 
   createClient = configOverrides => {
     const config = Object.assign({}, this._getClientConfig(), configOverrides);
+    //config.host = "http://search-cognito-test-zcikkvndl2skcocg5n6czsm6eq.us-east-1.es.amazonaws.com";
     return new elasticsearch.Client(parseConfig(config));
+    // return new elasticsearch.Client({
+    //  hosts: [ 'https://search-cognito-test-zcikkvndl2skcocg5n6czsm6eq.us-east-1.es.amazonaws.com' ],
+    //  connectionClass: require('http-aws-es')
+    // });
   }
 
   _getClientConfig = () => {
